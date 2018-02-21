@@ -1,0 +1,45 @@
+<h1>Insert new student</h1>
+<hr>
+<%= form_with scope: :student, url: students_path, local: true do |form| %>
+<table border=1>
+<tr>
+   <td>Rollno </td>
+   <td><%= form.text_field :rno %></td>
+<tr>
+<tr>
+   <td>Name </td>
+   <td><%= form.text_field :studentname %></td>
+<tr>
+<tr>
+   <td>Gender </td>
+   <td>
+<%= form.radio_button(:gender, "Male") %>Male
+<%= form.radio_button(:gender, "Female") %>Female
+</td>
+<tr>
+<tr>
+   <td>Class </td>
+   <td><%= form.text_field :studentclass %></td>
+<tr>
+<tr>
+   <td>Department </td>
+   <td><%= form.text_field :department %></td>
+<tr>
+
+<tr>
+   <td>Mobile number </td>
+   <td><%= form.number_field :mobileno, min:1000000000, max:999999999 %></td>
+<tr>
+<tr>
+   <td>Gmail </td>
+   <td><%= form.email_field :gmail %></td>
+<tr>
+<tr>
+   <td>DOB </td>
+   <td><%= form.date_field :dob %></td>
+<tr>
+<tr>
+<th colspan=2><%= form.submit :register %></th>
+<tr>
+</table>
+<% end %>

@@ -1,0 +1,26 @@
+<h1>Students Details</h1>
+<table border=1>
+<tr>
+	<th>Rollno</th>
+	<th>Name</th>
+	<th>Gender</th>
+	<th>Mobileno</th>
+	<th>Class</th>
+	<th>Departmet</th>
+	<th>Gmail</th>
+	<th>DOB</th>
+</tr>
+<% @students.each do |i| %>
+<tr>
+  <td><%= i.rno %></td>
+  <td><%= i.studentname %></td>
+  <td><%= i.gender %></td>
+  <td><%= i.mobileno %></td>
+  <td><%= i.studentclass %></td>
+  <td><%= i.department %></td>
+  <td><%= i.gmail %></td>
+  <td><%= i.dob %></td>
+<tr>
+
+<% end %>
+</table>

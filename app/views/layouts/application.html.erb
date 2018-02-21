@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AMS</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <h1>ABCD COLLEGE</h1>
+  <%= link_to "New Student" url:students_insert_url %>
+    <%= yield %>
+  </body>
+</html>

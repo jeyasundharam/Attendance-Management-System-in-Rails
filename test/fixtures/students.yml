@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rno: MyString
+  studentname: MyString
+  gender: MyString
+  studentclass: MyString
+  department: MyString
+  mobileno: 
+  gmail: MyString
+  dob: 2018-02-21
+
+two:
+  rno: MyString
+  studentname: MyString
+  gender: MyString
+  studentclass: MyString
+  department: MyString
+  mobileno: 
+  gmail: MyString
+  dob: 2018-02-21
