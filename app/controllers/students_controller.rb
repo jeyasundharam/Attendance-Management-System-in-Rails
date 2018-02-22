@@ -60,13 +60,13 @@ class StudentsController < ApplicationController
   def filterstudents
     @studentclass=Student.select(:studentclass).distinct  
     @department=Student.select(:department).distinct  
-    @students=Student.where(:studentclass => params[:studentclass])   
-     
+    @students=Student.where(:studentclass => params[:filterstudents][:studentclass])   
+    render "show"  
   end
 
   private
   def student_params
-	  params.require(:student).permit(:rno,:studentname,:gender,:studentclass,:department,:mobileno,:gmail,:dob)
+	  params.require(:student).permit(:rno,:studentname,:avatar,:gender,:studentclass,:department,:mobileno,:gmail,:dob)
   end
   def updateattendance
   end

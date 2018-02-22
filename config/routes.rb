@@ -13,12 +13,13 @@ Rails.application.routes.draw do
   resources :students do
   	collection do
  		   post 'checkgmail'
-		   post 'filteruser'
-		   get 'filteruser'
+		   post 'filterstudents'
+		   get 'filterstudents'
   	end
   end
   get 'students/checkgmail', to: 'students#checkgmail'
   get 'students/fiterstudents', to: 'students#filterstudents'
+  post 'students/fiterstudents', to: 'students#filterstudents'
   root 'students#insert'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

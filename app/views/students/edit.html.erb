@@ -28,6 +28,15 @@
    <td><%= form.text_field :studentname %></td>
 <tr>
 <tr>
+  <td>
+    choose Student Image
+  </td>
+  <td>
+  	<%= form.file_field :avatar %>
+  </td>
+<tr>
+
+<tr>
    <td>Gender </td>
    <td>
 <%= form.radio_button(:gender, "Male") %>Male
