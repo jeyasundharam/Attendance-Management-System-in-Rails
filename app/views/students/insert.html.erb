@@ -1,6 +1,53 @@
+
+<script>
+	function checkgmail(str)
+	{
+		if(str=='')
+		{
+			document.getElementById('gmailexist').innerHTML='Gmail Null one';
+				return;
+		}
+		if(str=='A')
+		{
+			document.getElementById('gmailexist').innerHTML='Suber';
+				return;
+		}
+		else
+		{
+			xmlhttp=new XMLHttpRequest();
+			xmlhttp.onreadystatechange= function()
+			{
+				document.getElementById('gmailexist').innerHTML=this.status;
+				if(this.readyState==4 && this.status==200)
+				{
+			//		document.getElementById('department').innerHTML=this.responseText;
+				}
+			};
+			xmlhttp.open("post", students_checkgmail ,true);
+			xmlhttp.send();
+		}
+	}
+</script>
+
 <h1>Insert new student</h1>
+<% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> 
+      prohibited  this Student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
 <hr>
 <%= form_with scope: :student, url: students_path, local: true do |form| %>
+
 <table border=1>
 <tr>
    <td>Rollno </td>
@@ -18,21 +65,42 @@
 </td>
 <tr>
 <tr>
-   <td>Class </td>
-   <td><%= form.text_field :studentclass %></td>
+   <td>Select Year </td>
+   <td><%= form.select :studentclass, options_for_select(
+	["I - year",
+	 "II - year",
+	 "III - year"]),:prompt => "Select One" %>
+</td>
 <tr>
 <tr>
    <td>Department </td>
-   <td><%= form.text_field :department %></td>
+   <td>
+    <%= form.select :department, options_for_select(
+	["Information Technology",
+	 "Computer Science",
+	 "Computer Applications",
+	 "Microbiology",
+	 "Chemistry",
+	 "Physics",
+	 "Maths",
+	 "Zoology"]),:prompt => "Select One" %>
+
+
+
+   </td>
 <tr>
 
 <tr>
    <td>Mobile number </td>
-   <td><%= form.number_field :mobileno, min:1000000000, max:999999999 %></td>
+   <td><%= form.number_field :mobileno, min:1000000000, max:9999999999 %></td>
 <tr>
 <tr>
    <td>Gmail </td>
-   <td><%= form.email_field :gmail %></td>
+   <td><%= form.email_field :gmail, :id=>"gmail",:onchange => "checkgmail(this.value);" %>
+<div id="gmailexist">
+
+</div>
+</td>
 <tr>
 <tr>
    <td>DOB </td>

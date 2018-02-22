@@ -1,4 +1,8 @@
 <h1>Students Details</h1>
+<%= form_with scope: :filterstudents, url: students_fiterstudents_url,local: true,:html=>{:id=>'form1'} do |form| %>
+class:
+<%= form.select :studentclass , options_from_collection_for_select(@studentclass, "studentclass","studentclass"), :prompt => "All", onchange: "$('#form1').submit();" %>
+<% end %> 
 <table border=1>
 <tr>
 	<th>Rollno</th>
@@ -9,6 +13,7 @@
 	<th>Departmet</th>
 	<th>Gmail</th>
 	<th>DOB</th>
+	<th>Operrations</th>
 </tr>
 <% @students.each do |i| %>
 <tr>
@@ -20,7 +25,11 @@
   <td><%= i.department %></td>
   <td><%= i.gmail %></td>
   <td><%= i.dob %></td>
+  <td>
+       <%= link_to 'Show', students_show_path(i) %> |
+       <%= link_to 'Edit', {controller:'students',action:'edit',id:i.id} %> |
+       <%= link_to 'Delete', {controller:'students',action:'destroy',id:i.id}, method: :delete, data: { confirm: 'Are you sure?' } %> 
+ </td>
 <tr>
-
 <% end %>
 </table>

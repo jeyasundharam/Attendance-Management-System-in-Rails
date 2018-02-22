@@ -1,2 +1,83 @@
-<h1>Students#edit</h1>
-<p>Find me in app/views/students/edit.html.erb</p>
+
+<h1>Update student</h1>
+<% if @student.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@student.errors.count, "error") %> 
+      prohibited  this Student from being saved:
+      </h2>
+      <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<hr>
+<%= form_for @student, url: {:controller => "students", :action => "update"}, local: true do |form| %>
+
+<table border=1>
+<tr>
+   <td>Rollno </td>
+   <td><%= form.text_field :rno %></td>
+<tr>
+<tr>
+   <td>Name </td>
+   <td><%= form.text_field :studentname %></td>
+<tr>
+<tr>
+   <td>Gender </td>
+   <td>
+<%= form.radio_button(:gender, "Male") %>Male
+<%= form.radio_button(:gender, "Female") %>Female
+</td>
+<tr>
+<tr>
+   <td>Select Year </td>
+   <td><%= form.select :studentclass, options_for_select(
+	["I - year",
+	 "II - year",
+	 "III - year"]),:prompt => "Select One" %>
+</td>
+<tr>
+<tr>
+   <td>Department </td>
+   <td>
+    <%= form.select :department, options_for_select(
+	["Information Technology",
+	 "Computer Science",
+	 "Computer Applications",
+	 "Microbiology",
+	 "Chemistry",
+	 "Physics",
+	 "Maths",
+	 "Zoology"]),:prompt => "Select One" %>
+
+
+
+   </td>
+<tr>
+
+<tr>
+   <td>Mobile number </td>
+   <td><%= form.number_field :mobileno, min:1000000000, max:9999999999 %></td>
+<tr>
+<tr>
+   <td>Gmail </td>
+   <td><%= form.email_field :gmail, :id=>"gmail",:onchange => "checkgmail(this.value);" %>
+<div id="gmailexist">
+
+</div>
+</td>
+<tr>
+<tr>
+   <td>DOB </td>
+   <td><%= form.date_field :dob %></td>
+<tr>
+<tr>
+<th colspan=2><%= form.submit :update %></th>
+<tr>
+</table>
+<% end %>

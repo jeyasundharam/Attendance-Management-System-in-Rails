@@ -1,27 +1,69 @@
 class StudentsController < ApplicationController
   def insert
+    @student=Student.new
   end
 
   def edit
+   @student = Student.find(params[:id])
   end
 
   def delete
+  
   end
+  def update
+    @student = Student.find(params[:id])
+ 
+    if @student.update(student_params)
+		
+      flash[:notice]="Your Article updated"
+	    render 'edit'
+    else
+      flash[:notice]="Your Article Not updated"
+      render 'edit'
+    end
 
+  end
+  def destroy
+   @student = Student.find(params[:id])
+    if @student.destroy
+	 flash[:notice]="Student deleted"
+	else
+	 flash[:notice]="Student not deleted"
+    end
+    render:insert
+
+  end
   def show
-      @students=Student.all
+    @studentclass=Student.select(:studentclass).distinct  
+    @department=Student.select(:department).distinct  
+    @students=Student.all
   end
   
   def create
   	@student = Student.new(student_params)
 	if @student.save
 	   flash[:notice]="Student Added Successfully"
+ 	   redirect_to students_insert_url
  	else
- 	   flash[:notice]="Student Added " 
+ 	   flash[:notice]="Student Not Added "
+           render "insert" 
   	end
-        render:insert
   end
- 
+  
+  def checkgmail
+  	if Student.where('gmail = ?', params[:gmail]).count == 0
+ 		print "Valid Gmail"
+	else
+ 		print "Gmail Not Valid"
+	end
+  end
+  def filterstudents
+    @studentclass=Student.select(:studentclass).distinct  
+    @department=Student.select(:department).distinct  
+    @students=Student.where(:studentclass => params[:studentclass])   
+     
+  end
+
   private
   def student_params
 	  params.require(:student).permit(:rno,:studentname,:gender,:studentclass,:department,:mobileno,:gmail,:dob)

@@ -8,8 +8,21 @@
   </head>
 
   <body>
+<center>
+<script>
+ <% if flash[:notice] %>
+    alert('<%= flash[:notice] %>');
+ <% end %>
+</script>
    <h1>ABCD COLLEGE</h1>
-  <%= link_to "New Student" url:students_insert_url %>
+<hr>  
+  <%= link_to "New Student", students_insert_url %>
+  <%= link_to "Edit Student", students_edit_url %>
+  <%= link_to "Delete Student", students_delete_url %>
+  <%= link_to "Show", students_show_url %>
+  <%= link_to "Update attendance", students_updateattendance_url %>
+ <hr width=90% height=20px>
+</hr>
     <%= yield %>
   </body>
 </html>
