@@ -1,4 +1,13 @@
 class StudentsController < ApplicationController
+ def index
+ @students = Student.all
+  respond_to do |format|
+    format.html
+    format.csv { send_data @students.to_csv }
+    format.xls # { send_data @products.to_csv(col_sep: "\t") }
+  end
+
+ end
   def insert
     @student=Student.new
   end
@@ -12,16 +21,13 @@ class StudentsController < ApplicationController
   end
   def update
     @student = Student.find(params[:id])
- 
-    if @student.update(student_params)
-		
+    if @student.update(student_params)	
       flash[:notice]="Your Article updated"
 	    render 'edit'
     else
       flash[:notice]="Your Article Not updated"
       render 'edit'
     end
-
   end
   def destroy
    @student = Student.find(params[:id])
@@ -31,7 +37,6 @@ class StudentsController < ApplicationController
 	 flash[:notice]="Student not deleted"
     end
     render:insert
-
   end
   def show
     @studentclass=Student.select(:studentclass).distinct  

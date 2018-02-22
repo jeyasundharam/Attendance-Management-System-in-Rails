@@ -42,3 +42,9 @@ class:
 <tr>
 <% end %>
 </table>
+<p>
+  Download:
+  <%= link_to "CSV", students_path(format: "csv") %> |
+  <%= link_to "Excel", students_path(format: "xls") %>
+</p>
+
