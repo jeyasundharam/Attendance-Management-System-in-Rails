@@ -1,2 +1,12 @@
-<h1>Students#updateattendance</h1>
-<p>Find me in app/views/students/updateattendance.html.erb</p>
+<h1>Update Student Attendance</h1>
+<hr>
+
+
+<%= form_with scope: :attendance, url: {:controller => "students", :action => ""}, local: true do |form| %>
+<h2>Select Absentees</h2>
+<% @students.each do |i| %>
+      <%= form.check_box "absent[i.rno]" %> <%= i.rno %><br />
+    <% end %>
+<%= form.submit :'Update Attendance' %> 
+<% end %> 
+

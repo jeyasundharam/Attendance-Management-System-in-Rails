@@ -20,7 +20,7 @@
   <%= link_to "Edit Student", students_edit_url %>
   <%= link_to "Delete Student", students_delete_url %>
   <%= link_to "Show", students_show_url %>
-  <%= link_to "Update attendance", students_updateattendance_url %>
+  <%= link_to "UpdateAttendance", :controller=>"students",:action => "updateattendance" %>
  <hr width=90% height=20px>
 </hr>
     <%= yield %>

@@ -69,10 +69,14 @@ class StudentsController < ApplicationController
     render "show"  
   end
 
+  def updateattendance 
+	  @students=Student.all
+  end
   private
   def student_params
 	  params.require(:student).permit(:rno,:studentname,:avatar,:gender,:studentclass,:department,:mobileno,:gmail,:dob)
   end
-  def updateattendance
+  def attendence_params
+  	params.require(:cleaner).permit(city_ids: [])
   end
 end
