@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223060805) do
+ActiveRecord::Schema.define(version: 20180223123818) do
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "rno"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 20180223060805) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rno"], name: "index_attendances_on_rno", unique: true
+  end
+
+  create_table "reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date "date"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
