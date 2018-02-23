@@ -5,10 +5,11 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
   </head>
 
   <body>
-<center>
+
 <script>
  <% if flash[:notice] %>
     alert('<%= flash[:notice] %>');
@@ -16,6 +17,20 @@
 </script>
    <h1>ABCD COLLEGE</h1>
 <hr>  
+<div class="container">
+<div class="row">
+  <div class="col-sm-4">
+    One
+  </div>
+  <div class="col-sm-4">
+    Two
+  </div>
+  <div class="col-sm-4">
+  Three
+  </div>
+</div>
+</div>
+<center>
   <%= link_to "New Student", students_insert_url %>
   <%= link_to "Edit Student", students_edit_url %>
   <%= link_to "Delete Student", students_delete_url %>

@@ -5,11 +5,9 @@ function submitfun()
   $("form123").submit();
 }
 </script>
-<%= form_with scope: :filterstudents, url: {:controller => "students", :action => "filterstudents"}, local: true,:html=>{:id=>"form123",:multipart => true,:remote=>true} do |form| %>
-class:
-<%= form.select :studentclass , options_from_collection_for_select(@studentclass, "studentclass","studentclass"), :onchange => "submitfun()" %>
-<%= form.submit :show %>
-<% end %> 
+ <%= form_tag(students_show_url, method: :get) do %>
+<%= select_tag :studentclass, options_for_select(@studentclass.map {|t| [ t.studentclass, t.studentclass ]}.uniq), include_blank: "Search Classwise", :onchange => "this.form.submit()" %>
+<% end %>
 <table border=1>
 <tr>
 	<th>Rollno</th>
@@ -26,7 +24,7 @@ class:
 <% @students.each do |i| %>
 <tr>
   <td><%= i.rno %></td>
-<td><%= image_tag i.avatar.url(:thumb) %></td>
+<td><%= image_tag i.avatar.url(:thumb), :class=>"img-rounded" %></td>
   <td><%= i.studentname %></td>
   <td><%= i.gender %></td>
   <td><%= i.mobileno %></td>

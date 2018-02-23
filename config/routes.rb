@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'students/checkgmail', to: 'students#checkgmail'
   get 'students/fiterstudents', to: 'students#filterstudents'
   post 'students/fiterstudents', to: 'students#filterstudents'
+  get 'students/putattendance', to: 'students#putattendance'
+  post 'students/putattendance', to: 'students#putattendance'
   root 'students#insert'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

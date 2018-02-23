@@ -2,11 +2,16 @@
 <hr>
 
 
-<%= form_with scope: :attendance, url: {:controller => "students", :action => ""}, local: true do |form| %>
+<%= form_with scope: :attendance, url: {:controller => "students", :action => "putattendance"}, local: true do |form| %>
 <h2>Select Absentees</h2>
+<table>
+  <tbody>
 <% @students.each do |i| %>
-      <%= form.check_box "absent[i.rno]" %> <%= i.rno %><br />
-    <% end %>
+  <%= form.check_box(:absentees, { :multiple => true }, i.rno) %>
+  <%= i.rno %><br>
+<% end %>   
+ </tbody>
+  </table>
 <%= form.submit :'Update Attendance' %> 
 <% end %> 
 

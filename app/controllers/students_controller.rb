@@ -6,7 +6,6 @@ class StudentsController < ApplicationController
     format.csv { send_data @students.to_csv }
     format.xls # { send_data @products.to_csv(col_sep: "\t") }
   end
-
  end
   def insert
     @student=Student.new
@@ -41,7 +40,11 @@ class StudentsController < ApplicationController
   def show
     @studentclass=Student.select(:studentclass).distinct  
     @department=Student.select(:department).distinct  
-    @students=Student.all
+    if params[:studentclass]
+      @students=Student.where(:studentclass => params[:studentclass])   
+    else
+      @students=Student.all
+    end
   end
   
   def create
@@ -57,26 +60,27 @@ class StudentsController < ApplicationController
   
   def checkgmail
   	if Student.where('gmail = ?', params[:gmail]).count == 0
- 		print "Valid Gmail"
-	else
- 		print "Gmail Not Valid"
-	end
+ 	  	print "Valid Gmail"
+  	else
+ 		  print "Gmail Not Valid"
+  	end
   end
   def filterstudents
-    @studentclass=Student.select(:studentclass).distinct  
-    @department=Student.select(:department).distinct  
-    @students=Student.where(:studentclass => params[:filterstudents][:studentclass])   
-    render "show"  
+  
   end
 
   def updateattendance 
 	  @students=Student.all
+  end
+  def putattendance
+  @absentees=params[:attendance][:absentees]
+  render "delete"
   end
   private
   def student_params
 	  params.require(:student).permit(:rno,:studentname,:avatar,:gender,:studentclass,:department,:mobileno,:gmail,:dob)
   end
   def attendence_params
-  	params.require(:cleaner).permit(city_ids: [])
+  	params.require(:attendance).permit(absentees: [])
   end
 end
