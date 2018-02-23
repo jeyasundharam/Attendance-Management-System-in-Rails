@@ -5,37 +5,43 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' %>
+    <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' %>
+    <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js' %>
+    
   </head>
 
-  <body>
+<body>
+  <center>
+  <div class='alert alert-success'>
+    <% if flash[:notice] %>
+      <%= flash[:notice] %>
+    <% end %>
+    </div>
+  <h1>ABCD COLLEGE</h1>
+  <hr>  
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 
-<script>
- <% if flash[:notice] %>
-    alert('<%= flash[:notice] %>');
- <% end %>
-</script>
-   <h1>ABCD COLLEGE</h1>
-<hr>  
-<div class="container">
-<div class="row">
-  <div class="col-sm-4">
-    One
-  </div>
-  <div class="col-sm-4">
-    Two
-  </div>
-  <div class="col-sm-4">
-  Three
-  </div>
-</div>
-</div>
+  <a class="navbar-brand" href="#">ABCD COLLEGE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+ 
+  <ul class="navbar-nav">
+    <li class="nav-item">
+        <%= link_to "New Student", students_insert_url,:class=>'nav-link' %>
+    </li>
+    <li class="nav-item">
+        <%= link_to "Show", students_show_url,:class=>'nav-link' %>
+    </li>
+    <li class="nav-item">
+       <%= link_to "UpdateAttendance",students_updateattendance_url,:class=>'nav-link' %>
+    </li>
+  </ul>
+</nav>
 <center>
-  <%= link_to "New Student", students_insert_url %>
-  <%= link_to "Edit Student", students_edit_url %>
-  <%= link_to "Delete Student", students_delete_url %>
-  <%= link_to "Show", students_show_url %>
-  <%= link_to "UpdateAttendance", :controller=>"students",:action => "updateattendance" %>
  <hr width=90% height=20px>
 </hr>
     <%= yield %>

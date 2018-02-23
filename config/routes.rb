@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'students/delete'
 
   get 'students/show'
+  post 'students/show'
 
   get 'students/updateattendance'
  

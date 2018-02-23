@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rno: MyString
+  present: 1
+  absent: 1
+  total: 1
+
+two:
+  rno: MyString
+  present: 1
+  absent: 1
+  total: 1

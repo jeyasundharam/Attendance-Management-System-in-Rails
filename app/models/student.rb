@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+ has_one :attendance
+
  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
@@ -12,7 +14,14 @@ class Student < ApplicationRecord
    end
  end
 
-
- validates :studentname, presence: true,
+                  validates :studentname, presence: true,
                     length: { minimum: 3 }
+                    validates :studentclass, presence: true
+                    validates :department, presence: true
+                    validates :avatar, presence: true
+                    validates :gender, presence: true
+                    validates :mobileno, presence: true, numericality: {length:10}
+                    validates :gmail, presence: true
+                    validates :dob, presence: true
+          
 end

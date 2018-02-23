@@ -6,9 +6,37 @@ function submitfun()
 }
 </script>
  <%= form_tag(students_show_url, method: :get) do %>
-<%= select_tag :studentclass, options_for_select(@studentclass.map {|t| [ t.studentclass, t.studentclass ]}.uniq), include_blank: "Search Classwise", :onchange => "this.form.submit()" %>
+<% if params[:studentclass]!='' && params[:studentclass]!=nil %>
+<%= select_tag :studentclass,
+   options_for_select(@studentclass.map {|t| [ t.studentclass, t.studentclass ]}.uniq,params[:studentclass]),selected:params[:studentclass]
+   %>
+<% else %>
+  <%= select_tag :studentclass,
+   options_for_select(@studentclass.map {|t| [ t.studentclass, t.studentclass ]}.uniq),
+   include_blank: "Search Class" %>
 <% end %>
-<table border=1>
+<% if params[:department]!='' && params[:department]!=nil %>
+<%= select_tag :department, 
+    options_for_select(@department.map {|t| [ t.department, t.department ]}.uniq, params[:department]),selected:params[:department] %>
+<% else %>
+ <%= select_tag :department, 
+    options_for_select(@department.map {|t| [ t.department, t.department ]}.uniq),
+    include_blank: "Search Department" %>
+<% end %>
+<% if params[:rno]!='' && params[:rno]!=nil %>
+  Rollno <%= text_field_tag :rno ,params[:rno] %>
+ <% else %>
+  Rollno <%= text_field_tag :rno %>
+ <% end %> 
+  <% if params[:name] %>
+    Name <%= text_field_tag :name,params[:name] %>
+<% else %>
+  Name <%= text_field_tag :name %>
+<% end %>
+
+<%= submit_tag :Search %>
+<% end %>
+<table border=1 class='table table-dark table-hover'>
 <tr>
 	<th>Rollno</th>
 	<th>Image</th>
