@@ -8,7 +8,8 @@ class StudentsController < ApplicationController
   end
  end
   def insert
-    @student=Student.new
+    @student = Student.new
+    1.times { @student.addresses.build}
   end
 
   def edit
@@ -91,13 +92,14 @@ class StudentsController < ApplicationController
   
   def create
     @student = Student.new(student_params)
-    @attendance=Attendance.new(
+    '@attendance=Attendance.new(
       :rno=>params[:student][:rno],
       :present=> 0,
       :absent=> 0,
       :total=> 0,    
     )
     @attendance.save
+    '
     if @student.save
       flash[:notice]="Student Added Successfully"
  	   redirect_to students_insert_url
@@ -123,16 +125,24 @@ class StudentsController < ApplicationController
   end
   def putattendance
   @absentees=params[:attendance][:absentees]
-  @absentes.each do |i|
-    
-      
+  @absentes.each do |i|     
 
   end 
   render "delete"
   end
   private
   def student_params
-	  params.require(:student).permit(:rno,:studentname,:avatar,:gender,:studentclass,:department,:mobileno,:gmail,:dob)
+    params.require(:student).permit(:rno,
+                                    :studentname,
+                                    :avatar,
+                                    :gender,
+                                    :studentclass,
+                                    :department,
+                                    :mobileno,
+                                    :gmail,
+                                    :dob,
+                                    addresses_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode]
+                                    )
   end
   def attendence_params
   	params.require(:attendance).permit(absentees: [])

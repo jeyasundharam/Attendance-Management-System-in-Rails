@@ -46,7 +46,7 @@
 
 
 <hr>
-<%= form_with scope: :student, url: students_path, local: true do |form| %>
+<%= form_for @student, url: students_path do |form| %>
 
 <table border=1>
 <tr>
@@ -98,7 +98,7 @@
 
 <tr>
    <td>Mobile number </td>
-   <td><%= form.number_field :mobileno, min:1000000000, max:9999999999 %></td>
+   <td><%= form.text_field :mobileno %></td>
 <tr>
 <tr>
    <td>Gmail </td>
@@ -111,7 +111,18 @@
 <tr>
    <td>DOB </td>
    <td><%= form.date_field :dob %></td>
-<tr>
+</tr>
+ <tr><th colspan=2 align=center>Address : </th></tr>
+  <%= form.fields_for :addresses do |addr| %>
+  <tr><td>Door No</td><td><%= addr.text_field :doorno %></td></tr>
+  <tr><td>Street</td><td><%= addr.text_field :street %></td></tr>
+  <tr><td>Area</td><td><%= addr.text_field :area %></td></tr>
+  <tr><td>City</td><td><%= addr.text_field :district %></td></tr>
+  <tr><td>District</td><td><%= addr.text_field :city %></td></tr>
+  <tr><td>State</td><td><%= addr.text_field :state %></td></tr>
+	<tr><td>Country</td><td><%= addr.text_field :country %></td></tr>
+  <tr><td>Pincode</td><td><%= addr.text_field :pincode %></td></tr>
+   <% end %>
 <tr>
 <th colspan=2><%= form.submit :register %></th>
 <tr>

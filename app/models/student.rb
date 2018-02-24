@@ -1,8 +1,8 @@
-class Student < ApplicationRecord
- has_one :attendance
-
- has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
- validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+class Student < ApplicationRecord   
+  has_many :addresses
+  accepts_nested_attributes_for :addresses, allow_destroy: true
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
 
  def self.to_csv(options = {})

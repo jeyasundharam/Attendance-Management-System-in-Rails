@@ -10,23 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223123818) do
+ActiveRecord::Schema.define(version: 20180223131249) do
+
+  create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "doorno"
+    t.string "street"
+    t.string "area"
+    t.string "city"
+    t.string "district"
+    t.string "state"
+    t.string "country"
+    t.integer "pincode"
+    t.bigint "student_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_addresses_on_student_id"
+  end
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "rno"
     t.integer "present"
     t.integer "absent"
     t.integer "total"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["rno"], name: "index_attendances_on_rno", unique: true
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "reasons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date "date"
     t.string "reason"
+    t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_reasons_on_student_id"
   end
 
   create_table "students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -47,4 +64,7 @@ ActiveRecord::Schema.define(version: 20180223123818) do
     t.index ["rno"], name: "index_students_on_rno", unique: true
   end
 
+  add_foreign_key "addresses", "students"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "reasons", "students"
 end
