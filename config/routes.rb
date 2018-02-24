@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'studentsite/showinformations'
+
+  get 'studentsite/showtimetable'
+
+  get 'studentsite/showdayorder'
+
+  get 'studentsite/showreasons'
+
+  get 'studentsite/showattendance'
+
   get 'students/insert'
 
   get 'students/edit'
@@ -6,11 +16,12 @@ Rails.application.routes.draw do
   get 'students/delete'
 
   get 'students/show'
+
   post 'students/show'
 
   get 'students/updateattendance'
  
-  resources:students
+  resources:students,:studentsite
   resources :students do
   	collection do
  		   post 'checkgmail'

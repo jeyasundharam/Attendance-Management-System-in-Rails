@@ -48,7 +48,7 @@
 <hr>
 <%= form_for @student, url: students_path do |form| %>
 
-<table border=1>
+<table border=1 class='table-success'>
 <tr>
    <td>Rollno </td>
    <td><%= form.text_field :rno %></td>
@@ -113,7 +113,7 @@
    <td><%= form.date_field :dob %></td>
 </tr>
  <tr><th colspan=2 align=center>Address : </th></tr>
-  <%= form.fields_for :addresses do |addr| %>
+  <%= form.fields_for :address do |addr| %>
   <tr><td>Door No</td><td><%= addr.text_field :doorno %></td></tr>
   <tr><td>Street</td><td><%= addr.text_field :street %></td></tr>
   <tr><td>Area</td><td><%= addr.text_field :area %></td></tr>

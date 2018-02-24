@@ -61,7 +61,7 @@ function submitfun()
   <td><%= i.gmail %></td>
   <td><%= i.dob %></td>
   <td>
-       <%= link_to 'Show', students_show_path(i) %> |
+       <%= link_to 'Show', {controller:'studentsite',action:'showinformations',id:i.id} %> |
        <%= link_to 'Edit', {controller:'students',action:'edit',id:i.id} %> |
        <%= link_to 'Delete', {controller:'students',action:'destroy',id:i.id}, method: :delete, data: { confirm: 'Are you sure?' } %> 
  </td>

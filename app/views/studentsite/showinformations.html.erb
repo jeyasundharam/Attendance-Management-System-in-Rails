@@ -1,0 +1,44 @@
+<h1><%= @student.studentname %> Details</h1>
+<table border=1  class='table table-dark table-hover'width=200px>
+<tr>
+ 	<th>Rollno</th>
+    <td><%= @student.rno %></td>
+</tr>
+<tr>
+    <td colspan=2 align=center><%= image_tag @student.avatar.url(:medium), :class=>"img-rounded" %></td>
+</tr>
+<tr>
+    <th>Name</th>
+    <td><%= @student.studentname %></td>
+</tr>
+<tr>
+    <th>Gender</th>
+    <td><%= @student.gender %></td>
+</tr>
+<tr>
+  <th>Mobileno</th>
+	<td><%= @student.mobileno %></td>
+</tr>
+<tr>
+	<th>Class</th>
+  <td><%= @student.studentclass %></td>
+</tr>
+<tr>
+	<th>Departmet</th>
+  <td><%= @student.department %></td>
+</tr>
+<tr>
+	<th>Gmail</th>
+  <td><%= @student.gmail %></td>
+</tr>
+<tr>
+	<th>DOB</th>
+  <td><%= @student.dob %></td>
+</tr>
+</table>
+<p>
+  Download:
+  <%= link_to "CSV", students_path(format: "csv") %> |
+  <%= link_to "Excel", students_path(format: "xls") %>
+</p>
+

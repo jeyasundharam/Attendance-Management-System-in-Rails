@@ -9,7 +9,8 @@ class StudentsController < ApplicationController
  end
   def insert
     @student = Student.new
-    1.times { @student.addresses.build}
+    @student.build_address
+    #1.times { @student.addresses.build}
   end
 
   def edit
@@ -141,7 +142,7 @@ class StudentsController < ApplicationController
                                     :mobileno,
                                     :gmail,
                                     :dob,
-                                    addresses_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode]
+                                    address_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode]
                                     )
   end
   def attendence_params
