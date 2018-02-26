@@ -28,9 +28,9 @@ ActiveRecord::Schema.define(version: 20180223131249) do
   end
 
   create_table "attendances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "present"
-    t.integer "absent"
-    t.integer "total"
+    t.float "present", limit: 24
+    t.float "absent", limit: 24
+    t.float "total", limit: 24
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

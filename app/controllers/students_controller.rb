@@ -24,7 +24,7 @@ class StudentsController < ApplicationController
   
   def update
     @student = Student.find(params[:id])
-    if @student.update(student_params)
+    if @student.update(update_params)
       flash[:notice]="Student Information updated"
 	    render 'edit'
     else
@@ -120,10 +120,21 @@ class StudentsController < ApplicationController
   def putattendance
     @fn=params[:attendance][:fnabsentees]
     @an=params[:attendance][:anabsentees]
-  @absentes.each do |i|     
-
-  end 
-  render "delete"
+    @students=Student.all
+    @students.each do |student|
+      if @fn.include? student.rno
+        student.attendance.increment!(:absent,0.5)
+      else
+        student.attendance.increment!(:present,0.5)
+      end
+      if @an.include? student.rno
+        student.attendance.increment!(:absent,0.5)
+      else
+        student.attendance.increment!(:present,0.5)
+      end
+      student.attendance.increment!(:total)
+    end
+    render "delete"
   end
   private
   def student_params
@@ -138,6 +149,19 @@ class StudentsController < ApplicationController
                                     :dob,
                                     address_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode],
                                     attendance_attributes: [:present,:absent,:total]
+                                    )
+  end
+  def update_params
+    params.require(:student).permit(:rno,
+                                    :studentname,
+                                    :avatar,
+                                    :gender,
+                                    :studentclass,
+                                    :department,
+                                    :mobileno,
+                                    :gmail,
+                                    :dob,
+                                    address_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode],
                                     )
   end
 end

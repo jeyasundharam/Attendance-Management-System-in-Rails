@@ -14,7 +14,7 @@
     </div>
   <% end %>
 
-<%= form_for @student, url: students_path do |form| %>
+<%= form_for @student, url: {controller: "students",action: "update"} do |form| %>
 <table border=1 class='table-success'>
 <tr>
    <td>Rollno </td>
