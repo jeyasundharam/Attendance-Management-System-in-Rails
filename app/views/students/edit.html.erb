@@ -14,11 +14,8 @@
     </div>
   <% end %>
 
-
-<hr>
-<%= form_for @student, url: {:controller => "students", :action => "update"}, local: true do |form| %>
-
-<table border=1>
+<%= form_for @student, url: students_path do |form| %>
+<table border=1 class='table-success'>
 <tr>
    <td>Rollno </td>
    <td><%= form.text_field :rno %></td>
@@ -27,15 +24,12 @@
    <td>Name </td>
    <td><%= form.text_field :studentname %></td>
 <tr>
-<tr>
   <td>
     choose Student Image
   </td>
   <td>
   	<%= form.file_field :avatar %>
   </td>
-<tr>
-
 <tr>
    <td>Gender </td>
    <td>
@@ -63,15 +57,12 @@
 	 "Physics",
 	 "Maths",
 	 "Zoology"]),:prompt => "Select One" %>
-
-
-
    </td>
 <tr>
 
 <tr>
    <td>Mobile number </td>
-   <td><%= form.number_field :mobileno, min:1000000000, max:9999999999 %></td>
+   <td><%= form.text_field :mobileno %></td>
 <tr>
 <tr>
    <td>Gmail </td>
@@ -84,9 +75,20 @@
 <tr>
    <td>DOB </td>
    <td><%= form.date_field :dob %></td>
+</tr>
+ <tr><th colspan=2 align=center>Address : </th></tr>
+  <%= form.fields_for :address do |addr| %>
+  <tr><td>Door No</td><td><%= addr.text_field :doorno %></td></tr>
+  <tr><td>Street</td><td><%= addr.text_field :street %></td></tr>
+  <tr><td>Area</td><td><%= addr.text_field :area %></td></tr>
+  <tr><td>City</td><td><%= addr.text_field :district %></td></tr>
+  <tr><td>District</td><td><%= addr.text_field :city %></td></tr>
+  <tr><td>State</td><td><%= addr.text_field :state %></td></tr>
+	<tr><td>Country</td><td><%= addr.text_field :country %></td></tr>
+  <tr><td>Pincode</td><td><%= addr.text_field :pincode %></td></tr>
+   <% end %>
 <tr>
-<tr>
-<th colspan=2><%= form.submit :update %></th>
+<th colspan=2><%= form.submit :register %></th>
 <tr>
 </table>
 <% end %>

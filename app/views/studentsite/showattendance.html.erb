@@ -1,2 +1,29 @@
-<h1>Studentsite#showattendance</h1>
-<p>Find me in app/views/studentsite/showattendance.html.erb</p>
+
+<h1><%= @student.studentname %> Attendance Details</h1>
+<table border=1  class='table table-dark table-hover'width=200px>
+<tr>
+ 	<th>Rollno</th>
+    <td><%= @student.rno %></td>
+</tr>
+<tr>
+    <td colspan=2 align=center><%= image_tag @student.avatar.url(:medium), :class=>"img-rounded" %></td>
+</tr>
+<tr>
+    <th>Name</th>
+   <% i= @student.attendance %>
+     <td><%= @student.studentname %></td>
+</tr>
+<tr>
+    <th>Present Days</th>
+    <td><%= i.present %></td>
+</tr>
+<tr>
+  <th>Absent Days</th>
+	<td><%= i.absent %></td>
+</tr>
+<tr>
+	<th>College days</th>
+  <td><%= i.total %></td>
+</tr>
+</table>
+

@@ -10,7 +10,8 @@ class StudentsController < ApplicationController
   def insert
     @student = Student.new
     @student.build_address
-    #1.times { @student.addresses.build}
+    @student.build_attendance
+    #1.times { @student.addresses.build} it for has_many
   end
 
   def edit
@@ -38,8 +39,8 @@ class StudentsController < ApplicationController
   	else
 	    flash[:notice]="Student not deleted"
     end
-    render:insert
-  end
+    redirect_to students_show_url
+   end
   def show
     @studentclass=Student.select(:studentclass).distinct
     @department=Student.select(:department).distinct
@@ -93,14 +94,6 @@ class StudentsController < ApplicationController
   
   def create
     @student = Student.new(student_params)
-    '@attendance=Attendance.new(
-      :rno=>params[:student][:rno],
-      :present=> 0,
-      :absent=> 0,
-      :total=> 0,    
-    )
-    @attendance.save
-    '
     if @student.save
       flash[:notice]="Student Added Successfully"
  	   redirect_to students_insert_url
@@ -125,7 +118,8 @@ class StudentsController < ApplicationController
 	  @students=Student.all
   end
   def putattendance
-  @absentees=params[:attendance][:absentees]
+    @fn=params[:attendance][:fnabsentees]
+    @an=params[:attendance][:anabsentees]
   @absentes.each do |i|     
 
   end 
@@ -142,10 +136,8 @@ class StudentsController < ApplicationController
                                     :mobileno,
                                     :gmail,
                                     :dob,
-                                    address_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode]
+                                    address_attributes: [:doorno,:street,:area,:city,:district,:state,:country,:pincode],
+                                    attendance_attributes: [:present,:absent,:total]
                                     )
-  end
-  def attendence_params
-  	params.require(:attendance).permit(absentees: [])
   end
 end

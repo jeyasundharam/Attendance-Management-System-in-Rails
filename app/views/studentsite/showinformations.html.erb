@@ -35,10 +35,24 @@
 	<th>DOB</th>
   <td><%= @student.dob %></td>
 </tr>
+<tr>
+<tr>
+<th colspan=2 align='center'>
+ Address
+</th>
+</tr> 
+<% address=@student.address %>
+<tr><td>Door No</td><td><%= address.doorno %></td></tr>
+<tr><td>Street</td><td><%= address.street %></td></tr>
+<tr><td>City</td><td><%= address.city %></td></tr>
+<tr><td>District</td><td><%= address.district %></td></tr>
+<tr><td>State</td><td><%= address.state %></td></tr>
+<tr><td>Country</td><td><%= address.country %></td></tr>
+<tr><td>PinCode</td><td><%= address.pincode %></td></tr>
+
+<th colspan=2 align=center> 
+  <%= link_to 'Show', {controller:'studentsite',action:'showattendance',id:@student.id} %> |
+    
+</tr>
 </table>
-<p>
-  Download:
-  <%= link_to "CSV", students_path(format: "csv") %> |
-  <%= link_to "Excel", students_path(format: "xls") %>
-</p>
 

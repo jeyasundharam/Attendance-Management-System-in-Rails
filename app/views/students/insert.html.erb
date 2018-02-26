@@ -90,9 +90,6 @@
 	 "Physics",
 	 "Maths",
 	 "Zoology"]),:prompt => "Select One" %>
-
-
-
    </td>
 <tr>
 
@@ -122,6 +119,11 @@
   <tr><td>State</td><td><%= addr.text_field :state %></td></tr>
 	<tr><td>Country</td><td><%= addr.text_field :country %></td></tr>
   <tr><td>Pincode</td><td><%= addr.text_field :pincode %></td></tr>
+   <% end %>
+  <%= form.fields_for :attendance do |attn| %>
+  <%= attn.hidden_field(:absent, :value => 0) %>
+  <%= attn.hidden_field(:present, :value => 0) %>
+  <%= attn.hidden_field(:total, :value => 0) %>
    <% end %>
 <tr>
 <th colspan=2><%= form.submit :register %></th>

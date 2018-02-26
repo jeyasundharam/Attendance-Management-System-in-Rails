@@ -3,7 +3,6 @@ class StudentsiteController < ApplicationController
     @student=Student.find(params[:id])
   end
   def showtimetable
-  
   end
   def showdayorder
   
@@ -12,6 +11,6 @@ class StudentsiteController < ApplicationController
   
   end
   def showattendance
-  
+      @student=Student.find(params[:id])
   end
 end
